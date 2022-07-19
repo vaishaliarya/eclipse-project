@@ -1,0 +1,377 @@
+1. Download the git https://git-scm.com/downloads
+2. Install with default settings
+3.$pwd: present working directory
+4. cd : change the directory
+5. Create a folder with name project on Desktop and set the same directory as the rrot directory
+6. git config --global user.name "vaishaliarya": to set the setting globally
+7. git config --global user.email arya.vaishali17@gmail.com
+8. git config --global -e: to open the properties in VI Editor
+9. To quit the VI editor :q!
+10 git config --help: to open the detailed help
+11. git config --global core.autocrlf true: to standardize the code in a LF(line feed format)
+12. mkdir firstproject //create firstproject as the main branch of the project
+13. dir
+14. ls
+15. ls -lrt
+16. cd firstproject
+17. pwd
+18. git init
+19. ls
+20. ls -a //show the hidden folder--has all the configuration in this file system
+21. rm  -rf .git (remove recursively the git folder)
+22. ls -a : to see the outcome
+23. this will remove the first project from the master branch of git and create it as a local repo now
+24. initialize git again
+25. git init
+26. echo hello>file1.txt, echo hello>file2.txt
+27. ls
+28. git ls-files: to show the files status in staging area
+29. git add file1.txt
+30. git ls-files : this will push file1 to staging area
+31. git status
+32. git add .: to add the files/push the files
+33. git ls-files
+34. to push and commit the workable code into the remote repository:
+git status
+git commit : this will not commit: give an error that can not be performed without message
+git commit -m "Initial code for myfirstproject" --make commit when you complete a feature at least
+git status
+35. git log: to see the log when and who made the last commit
+35. To add the content into file
+echo text...>>file1.txt
+cat file1.txt --will show you the content of file
+git commit -m "fixed the bug"
+
+36. rm file2.txt --this will remove the file from local repo but not from git remote repo
+ls : to verify 
+git ls-files
+git status
+git add file2.txt
+git ls-files
+git commit -m "remove the unused code"
+
+37. To rename the file
+
+mv file1.txt main.java
+ls: main.java
+
+git ls-files: first.txt
+
+git status
+git add file1.txt main.java
+ git ls-files
+
+gut status
+
+//******another way of moving the file
+git mv main.java file1.java
+git status
+ls 
+git ls-files
+git commit -m "refactoring of code"
+
+
+38. Ignoring file
+mkdir logs
+ls
+echo logging ...>logs/dev.log
+ls -lrt
+git status
+echo logs/>.gitignore
+
+cat .gitignore
+git status
+git add .gitignore
+git commit -m "Added git ignore file"
+git status
+ls
+ls -a
+git ls-files
+
+mkdir bin
+echo class...>bin/file1.class
+ls -lrt
+git status
+git add.
+git commit -m "added bin folder"
+git ls-files
+ls -a
+
+vi .gitignore:
+open vi editor 
+press o
+:wq
+
+git status
+ls -lrt
+echo helloworld-->bin.file1.class
+
+git status
+
+git add .gitignore
+git commit -m "added bin in gitignore"
+
+git status
+
+38. Removing files from staging area
+git rm -h
+ git rm --cached -r bin/: to remoe bin and all its recurvive folders
+
+ls: in this it will show
+git ls-files: emoved from staging
+
+git status
+git comit -m "Removed the bin directory added accidently"
+
+git status
+git ls-files
+
+39. git status -s(show status concisely)
+
+40 To check the difference in staging area
+Create another file and see the differences
+g
+git diff --staged : to show the difference b/w stagging and directory area
+
+git diff
+remote and working area diff
+This will show only the change which you have made rather hundered lines of code
+
+41. Restoring of file, if you have removed then you restore 
+
+git restore --staged file1.java
+restore file1.java from local respository content in staging area
+
+git restore .
+will restore content from staging area to workign directory
+
+git restore --source=head~1 file1.java
+
+git ls-files
+git status
+git add file1.java
+git commit -m "deleted files restoring"
+git log --oneline
+
+************************Connecting to a remote repo
+1. create a new git repo in github
+2. copy the path
+
+3. Goto Git bash and give command:
+git remote add origin url
+
+4.To Link the local repo with remote repo
+git remote -v
+
+5. To push on git remote repo--push the local working content to the remote repo
+git push origin master
+
+6. Ask for login and authorizing the credentials
+7. Add the files 
+git log -oneline
+8. git ls-files
+9. git pull origin master : to pull the content from remote to local--complete snapshot
+ls -lrt //to see the cahnges in local
+git ls-files //to see the changes in staging
+
+*****cloning a repo from remote repo
+
+git clone url(repo)
+ls//will give you the project
+
+cd firstproject
+ls -lrt
+ls -a
+
+
+****branching***************
+git branch //will show you the current branch
+git status
+git branch feature1 //to create a feature1 branch into main---this will you can see in local not in remote
+git checkout feature1//pointing to feature branch from main branch
+git branch
+git status
+
+
+echo newbranch--> feature1.java
+ls
+git status -s
+git add.
+git commit
+git log --online
+git log featurebranch --online
+
+******Merging *****
+
+git ls-files
+git checkout featurebranch
+**if you are in featurebranchswitch it to master branch
+git branch
+
+git merge featurebranch
+git status
+
+git log --online
+
+*****Git Rebase: Changes made in on branch and needs to be added in other branch
+//new branch will have all the content of main also
+1. goto master branch
+2. git branch rebasebranch --create new branch named rebasebranch
+3. make changes in one of the file
+ls
+cat file1.java
+echo rebasecode>>file1.java
+cat file1.java
+
+push the changes
+git add .
+git commit -m "made changes in master file1.java"
+
+git status
+
+
+git checkout rebasebranch
+echo newfile>file2.java
+git status
+git add .
+git commit -m "adding file2.java"
+git log --online
+git log master --online
+
+To make the rebase 
+git rebase master //changes made in master will be reflected in rebase as well
+
+check the logs commit messages
+
+
+*****Eclipse synch with GitHub***************
+1. Create repositoryand copy the link
+https://github.com/vaishaliarya/eclipse-project.git
+
+2. create project with same name in local
+3. go to search in IDE on right left and enter GIT
+4. find the option git repository
+5. Initialize your git repo
+
+
+If you already have a project in your machine and link it to the git
+use 
+a) git clone repositiry-name
+b) goto settings->developer settings->personal access token->generate token->select the repo->select the expiry date->copy & paste the token
+c)use this token as password into git push when it is asked for authetication.
+
+
+Access Token: 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
+
+******To Create a new project and synch..use the following commands**********
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project
+$ git init
+Initialized empty Git repository in C:/Users/JV836KU/Documents/git-demo/eclipse-
+project/.git/
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ ls
+pom.xml  src/  target/
+ls
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ ls -a
+./  ../  .classpath  .git/  .project  .settings/  pom.xml  src/  target/
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .classpath
+        .project
+        .settings/
+        pom.xml
+        src/
+        target/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git add .
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git commit -m "adding git repo"
+[master (root-commit) 07c0b17] adding git repo
+ Committer: Vaishali Kalra <Vaishali.Kalra1@gds.ey.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 14 files changed, 199 insertions(+)
+ create mode 100644 .classpath
+ create mode 100644 .project
+ create mode 100644 .settings/org.eclipse.core.resources.prefs
+ create mode 100644 .settings/org.eclipse.jdt.apt.core.prefs
+ create mode 100644 .settings/org.eclipse.jdt.core.prefs
+ create mode 100644 .settings/org.eclipse.m2e.core.prefs
+ create mode 100644 pom.xml
+ create mode 100644 src/main/java/com/ey/App.java
+ create mode 100644 src/test/java/com/ey/AppTest.java
+ create mode 100644 target/classes/META-INF/MANIFEST.MF
+ create mode 100644 target/classes/META-INF/maven/com.ey/eclipse-project/pom.pro
+perties
+ create mode 100644 target/classes/META-INF/maven/com.ey/eclipse-project/pom.xml
+ create mode 100644 target/classes/com/ey/App.class
+ create mode 100644 target/test-classes/com/ey/AppTest.class
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git remote add origin https://github.com/vaishaliarya/eclipse-project.git
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git remote -v
+origin  https://github.com/vaishaliarya/eclipse-project.git (fetch)
+origin  https://github.com/vaishaliarya/eclipse-project.git (push)
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$ git push origin master
+info: please complete authentication in your browser...
+Enumerating objects: 36, done.
+Counting objects: 100% (36/36), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (36/36), 4.24 KiB | 434.00 KiB/s, done.
+Total 36 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/vaishaliarya/eclipse-project.git
+ * [new branch]      master -> master
+
+MEA+JV836KU@IN3141713W1 MINGW64 ~/Documents/git-demo/eclipse-project (master)
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
